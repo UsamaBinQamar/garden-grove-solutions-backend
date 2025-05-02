@@ -71,7 +71,7 @@ app.get("/", (req, res) => {
 });
 
 // Send email endpoint
-app.post("/api/email/send", async (req, res) => {
+app.post("/api/email-send", async (req, res) => {
   try {
     const { to, subject, name, message } = req.body;
 
@@ -116,34 +116,6 @@ app.post("/api/email/send", async (req, res) => {
       success: false,
       error: {
         message: "Failed to send email",
-      },
-    });
-  }
-});
-
-// Get email status by ID
-app.get("/api/email/:id", async (req, res) => {
-  try {
-    const { id } = req.params;
-    const { data, error } = await resend.emails.get(id);
-
-    if (error) {
-      return res.status(400).json({
-        success: false,
-        error,
-      });
-    }
-
-    return res.status(200).json({
-      success: true,
-      data,
-    });
-  } catch (error) {
-    console.error("Error getting email:", error);
-    res.status(500).json({
-      success: false,
-      error: {
-        message: "Failed to get email status",
       },
     });
   }
