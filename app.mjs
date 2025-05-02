@@ -46,72 +46,161 @@ const serviceInquiryTemplate = ({
         <title>New Service Inquiry</title>
         <style>
           body {
-            font-family: Arial, sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             line-height: 1.6;
-            color: #333;
-            max-width: 600px;
+            color: #2c3e50;
+            max-width: 650px;
             margin: 0 auto;
-            padding: 20px;
+            padding: 0;
+            background-color: #f5f7fa;
+          }
+          .container {
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            margin: 20px auto;
+            overflow: hidden;
           }
           .header {
-            background-color: #2c3e50;
+            background: linear-gradient(135deg, #2c3e50 0%, #3498db 100%);
             color: white;
-            padding: 20px;
+            padding: 30px;
             text-align: center;
-            border-radius: 5px;
+          }
+          .header h1 {
+            margin: 0;
+            font-size: 24px;
+            font-weight: 600;
+          }
+          .header p {
+            margin: 10px 0 0;
+            opacity: 0.9;
+            font-size: 16px;
           }
           .content {
-            padding: 20px;
-            background-color: #f9f9f9;
-            border-radius: 5px;
-            margin-top: 20px;
+            padding: 30px;
           }
           .info-section {
-            margin-bottom: 15px;
-            padding: 10px;
-            background-color: white;
-            border-radius: 3px;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            background-color: #f8f9fa;
+            border-radius: 6px;
+            padding: 20px;
+            margin-bottom: 20px;
+            border: 1px solid #e9ecef;
+          }
+          .info-row {
+            display: flex;
+            margin-bottom: 12px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid #e9ecef;
+          }
+          .info-row:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
           }
           .label {
-            font-weight: bold;
+            font-weight: 600;
             color: #2c3e50;
+            width: 140px;
+            flex-shrink: 0;
+          }
+          .value {
+            color: #34495e;
+            flex-grow: 1;
+          }
+          .message-box {
+            background-color: #f8f9fa;
+            border-left: 4px solid #3498db;
+            padding: 20px;
+            margin-top: 20px;
+            border-radius: 0 6px 6px 0;
+          }
+          .message-box .label {
+            display: block;
+            margin-bottom: 10px;
+            color: #3498db;
           }
           .footer {
             text-align: center;
-            margin-top: 20px;
+            padding: 20px;
+            background-color: #f8f9fa;
+            color: #7f8c8d;
             font-size: 12px;
-            color: #999;
+            border-top: 1px solid #e9ecef;
           }
-          .message-box {
-            background-color: white;
-            padding: 15px;
-            border-left: 4px solid #2c3e50;
-            margin-top: 10px;
+          .logo {
+            max-width: 150px;
+            margin-bottom: 15px;
+          }
+          .service-badge {
+            display: inline-block;
+            background-color: #e3f2fd;
+            color: #1976d2;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 500;
+            margin-top: 5px;
+          }
+          @media (max-width: 600px) {
+            .info-row {
+              flex-direction: column;
+            }
+            .label {
+              width: 100%;
+              margin-bottom: 5px;
+            }
           }
         </style>
       </head>
       <body>
-        <div class="header">
-          <h1>New Service Inquiry</h1>
-        </div>
-        <div class="content">
-          <div class="info-section">
-            <p><span class="label">Name:</span> ${name}</p>
-            <p><span class="label">Email:</span> ${email}</p>
-            <p><span class="label">Phone:</span> ${phone}</p>
-            <p><span class="label">Address:</span> ${address}</p>
-            <p><span class="label">Service Type:</span> ${serviceType}</p>
-            <p><span class="label">Preferred Contact:</span> ${preferredContact || "Not specified"}</p>
-            <p><span class="label">Submission Date:</span> ${submissionDate}</p>
+        <div class="container">
+          <div class="header">
+            <h1>New Service Inquiry</h1>
+            <p>Garden Grove Solutions</p>
           </div>
-          <div class="message-box">
-            <p><span class="label">Message:</span></p>
-            <p>${message}</p>
+          <div class="content">
+            <div class="info-section">
+              <div class="info-row">
+                <span class="label">Name:</span>
+                <span class="value">${name}</span>
+              </div>
+              <div class="info-row">
+                <span class="label">Email:</span>
+                <span class="value">${email}</span>
+              </div>
+              <div class="info-row">
+                <span class="label">Phone:</span>
+                <span class="value">${phone}</span>
+              </div>
+              <div class="info-row">
+                <span class="label">Address:</span>
+                <span class="value">${address}</span>
+              </div>
+              <div class="info-row">
+                <span class="label">Service Type:</span>
+                <span class="value">
+                  <span class="service-badge">${serviceType}</span>
+                </span>
+              </div>
+              <div class="info-row">
+                <span class="label">Preferred Contact:</span>
+                <span class="value">${preferredContact || "Not specified"}</span>
+              </div>
+              <div class="info-row">
+                <span class="label">Submission Date:</span>
+                <span class="value">${submissionDate}</span>
+              </div>
+            </div>
+            <div class="message-box">
+              <span class="label">Message:</span>
+              <p>${message}</p>
+            </div>
           </div>
-        </div>
-        <div class="footer">
-          <p>© ${new Date().getFullYear()} Garden Grove Solutions. All rights reserved.</p>
+          <div class="footer">
+            <p>© ${new Date().getFullYear()} Garden Grove Solutions. All rights reserved.</p>
+            <p>This is an automated message, please do not reply directly to this email.</p>
+          </div>
         </div>
       </body>
     </html>
