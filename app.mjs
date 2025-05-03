@@ -264,7 +264,7 @@ app.post("/api/email-send", async (req, res) => {
     // Send email with Resend
     const { data, error } = await resend.emails.send({
       from: process.env.FROM_EMAIL || "onboarding@resend.dev",
-      to: process.env.TO_EMAIL || "antavius68@gmail.com",
+      to: process.env.TO_EMAIL || "twobrotherslandscape.solutions@gmail.com",
       subject: `New Service Inquiry: ${serviceType}`,
       html,
     });
